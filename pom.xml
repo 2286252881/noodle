@@ -20,5 +20,6 @@
   </build>
   <modules>
   	<module>noodle_ssm</module>
+  	<module>noodle_commonUtils</module>
   </modules>
 </project>
