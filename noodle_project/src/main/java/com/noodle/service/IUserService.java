@@ -1,5 +1,9 @@
 package com.noodle.service;
 
-public interface IUserService {
+import java.util.List;
 
+import com.noodle.pojo.po.TUser;
+
+public interface IUserService {
+	public List<TUser> getAllUsers()throws Exception;
 }
