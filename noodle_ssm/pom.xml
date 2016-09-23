@@ -187,7 +187,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>springMybatisSpringMVC</finalName>
+		<finalName>noodle_ssm</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
