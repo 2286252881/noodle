@@ -3,8 +3,11 @@ package com.noodle.action;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.noodle.process.result.ExceptionResultInfo;
+import com.noodle.process.result.ResultInfo;
 import com.noodle.service.IUserService;
 
 @Controller
@@ -12,18 +15,21 @@ import com.noodle.service.IUserService;
 public class UserAction {
 	@Autowired
 	private IUserService userService;
-	
+
 	/**
 	 * 获取所有用户信息
+	 * 
 	 * @return
+	 * @throws ExceptionResultInfo 
 	 */
 	@RequestMapping("/getAllUsers")
-	public JSON getAllUsers(){
+	public @ResponseBody JSON getAllUsers() throws ExceptionResultInfo {
 		try {
-			return  (JSON) JSON.toJSON(userService.getAllUsers());
+			int a=1/0;
+			return (JSON) JSON.toJSON(userService.getAllUsers());
 		} catch (Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException("getAllUsers获取所有用户信息失败!");
+			ResultInfo resultInfo = new ResultInfo(ResultInfo.TYPE_RESULT_FAIL, 100, "search all users is fail");
+			throw new ExceptionResultInfo(resultInfo);
 		}
 	};
 }

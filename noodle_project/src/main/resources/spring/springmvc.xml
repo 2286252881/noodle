@@ -14,8 +14,15 @@
 		http://www.springframework.org/schema/tx/spring-tx-3.1.xsd ">
 
 	<!-- 组件扫描 扫描所有标记@Controller类，由于使用自动扫描所以action类不用在spring配置文件中配置 -->
-	<context:component-scan base-package="com.noodle.action" />
-
+	<context:component-scan base-package="com.*.action" />
+	
+	<!-- 开启aop，对类代理 -->
+	<aop:config proxy-target-class="true"></aop:config>
+	<!-- 开启shiro注解支持 -->
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+	
     <!-- 处理器映射器和适配器，可以使用mvc注解驱动 -->
     <mvc:annotation-driven/>
 
@@ -34,14 +41,14 @@
 	</bean>
 	<!-- 统一异常处理器 -->
 	<bean id="handlerExceptionResolver"
-		class="yycg.base.process.exception.ExceptionResolverCustom">
+		class="com.noodle.process.exception.ExceptionResolverCustom">
 		<property name="jsonMessageConverter" ref="jsonMessageConverter"></property>
 	</bean>
 	<!--拦截器 -->
-	<mvc:interceptors>
+	<!-- <mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
 			<bean class="com.noodle.filter.LoginInterceptor"/>
 		</mvc:interceptor>
-	</mvc:interceptors>
+	</mvc:interceptors> -->
 </beans>
