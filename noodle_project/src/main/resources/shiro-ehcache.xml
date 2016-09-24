@@ -1,5 +1,5 @@
 <ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:noNamespaceSchemaLocation="../config/ehcache.xsd">
+	xsi:noNamespaceSchemaLocation="../config/ehcache.xsd" updateCheck="false">
 	<!--diskStore：缓存数据持久化的目录 地址  -->
 	<diskStore path="D:\HC\ehcache" />
 	<defaultCache 

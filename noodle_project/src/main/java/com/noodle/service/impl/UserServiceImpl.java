@@ -17,10 +17,24 @@ public class UserServiceImpl implements IUserService {
 	private TUserMapper userMapper;
 
 	@Override
-	public List<TUser> getAllUsers() throws Exception {
+	public List<TUser> getAllUsers() throws ExceptionResultInfo {
 		TUserExample tuserExample=new TUserExample();
 		TUserExample.Criteria criteria=tuserExample.createCriteria();
 		return userMapper.selectByExample(tuserExample);
+	}
+
+	@Override
+	public TUser findSysUserByUserName(String userName) throws ExceptionResultInfo {
+		TUserExample tuserExample=new TUserExample();
+		TUserExample.Criteria criteria=tuserExample.createCriteria();
+		criteria.andUsernameEqualTo(userName);
+		criteria.andFlagEqualTo(1);
+		List<TUser> list = userMapper.selectByExample(tuserExample);
+		TUser user=new TUser();
+		if(list!=null && list.size()==1){
+			user=list.get(0);
+		}	
+		return user;
 	}
 
 }

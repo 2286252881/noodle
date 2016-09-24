@@ -3,11 +3,16 @@ package com.noodle.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.noodle.pojo.po.ActiveUser;
+import com.noodle.pojo.po.TUser;
 import com.noodle.process.result.ExceptionResultInfo;
 
 @Controller
@@ -31,13 +36,22 @@ public class MainAction {
 		// 登陆失败还到login页面
 		return "/base/login";
 	}
-	//用户退出
-		@RequestMapping("/logout")
-		public String logout(HttpSession session)throws Exception{
-			//session失效
-			session.invalidate();
-			//重定向到商品查询页面
-			return "redirect:/first.action";
-			
-		}
+
+	// 用户退出
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) throws Exception {
+		// session失效
+		session.invalidate();
+		// 重定向到商品查询页面
+		return "redirect:/first.action";
+	}
+
+	@RequestMapping("/first")
+	public String first(Model model) {
+		Subject subject = SecurityUtils.getSubject();
+		// 取出身份信息
+		ActiveUser user = (ActiveUser) subject.getPrincipal();
+		model.addAttribute("adminUser", user);
+		return "/base/first";
+	}
 }

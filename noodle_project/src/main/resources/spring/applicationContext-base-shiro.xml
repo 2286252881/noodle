@@ -69,7 +69,7 @@
 	<bean id="credentialsMatcher"
 		class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
 		<property name="hashAlgorithmName" value="md5" />
-		<property name="hashIterations" value="1" />
+		<property name="hashIterations" value="2" />
 	</bean>
 	<!-- 缓存管理器 -->
 	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">

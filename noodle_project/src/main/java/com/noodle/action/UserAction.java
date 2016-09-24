@@ -25,7 +25,6 @@ public class UserAction {
 	@RequestMapping("/getAllUsers")
 	public @ResponseBody JSON getAllUsers() throws ExceptionResultInfo {
 		try {
-			int a=1/0;
 			return (JSON) JSON.toJSON(userService.getAllUsers());
 		} catch (Exception e) {
 			ResultInfo resultInfo = new ResultInfo(ResultInfo.TYPE_RESULT_FAIL, 100, "search all users is fail");
