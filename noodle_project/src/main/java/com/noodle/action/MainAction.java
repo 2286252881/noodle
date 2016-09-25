@@ -7,6 +7,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,9 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.noodle.pojo.po.ActiveUser;
 import com.noodle.pojo.po.TUser;
 import com.noodle.process.result.ExceptionResultInfo;
+import com.noodle.shiro.CustomRealm;
 
 @Controller
 public class MainAction {
+	
+//	@Autowired
+//	private CustomRealm customRealm;
+	
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request) throws ExceptionResultInfo {
 		// 如果登陆失败从request中获取认证异常信息，shiroLoginFailure就是shiro异常类的全限定名
@@ -44,6 +50,10 @@ public class MainAction {
 		session.invalidate();
 		// 重定向到商品查询页面
 		return "redirect:/first.action";
+	}
+	@RequestMapping("/clearCache")
+	public void clearCache(){
+//		customRealm.clearCached();
 	}
 
 	@RequestMapping("/first")

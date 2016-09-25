@@ -2,6 +2,8 @@ package com.noodle.pojo.po;
 
 import java.util.List;
 
+import com.noodle.pojo.vo.Menu;
+
 
 /**
  * 用户身份信息，存入session 由于tomcat将session会序列化在本地硬盘上，所以使用Serializable接口
@@ -14,7 +16,7 @@ public class ActiveUser implements java.io.Serializable {
 	private String usercode;// 用户账号
 	private String username;// 用户名称
 
-	private List<TMenu> menus;// 菜单
+	private List<Menu> menus;// 菜单
 	private List<TRole> roles;// 权限
 	public String getUserid() {
 		return userid;
@@ -34,10 +36,10 @@ public class ActiveUser implements java.io.Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public List<TMenu> getMenus() {
+	public List<Menu> getMenus() {
 		return menus;
 	}
-	public void setMenus(List<TMenu> menus) {
+	public void setMenus(List<Menu> menus) {
 		this.menus = menus;
 	}
 	public List<TRole> getRoles() {

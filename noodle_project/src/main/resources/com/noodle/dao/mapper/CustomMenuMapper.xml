@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.noodle.dao.mapper.CustomMenuMapper">
+	<!--自定义resultMap -->
+	<resultMap id="MenuResultMap" type="com.noodle.pojo.vo.Menu">
+		<id column="MENUID" property="menuid" jdbcType="VARCHAR" />
+		<result column="MENUNAME" property="menuname" jdbcType="VARCHAR" />
+		<collection property="menus" ofType="com.noodle.pojo.vo.Menu">
+			<result column="MENUID_TWO" property="menuid" jdbcType="VARCHAR" />
+			<result column="MENUNAME_TWO" property="menuname" jdbcType="VARCHAR" />
+			<result column="URl" property="url" jdbcType="VARCHAR" />
+		</collection>
+	</resultMap>
+	<select id="getAllMenusByuserId" parameterType="int" resultMap="com.noodle.pojo.po.TMenu">
+		SELECT * FROM t_menu m WHERE m.type='permission' AND
+		m.type='permission' AND m.id IN (
+		SELECT rm.menuid FROM t_rolemenu rm WHERE rm.roleid IN (SELECT ur.roleid
+		FROM t_userrole ur WHERE ur.userid=#{id} )
+		)
+	</select>
+	<select id="findPermissionListByUserid" parameterType="int"
+		resultType="com.noodle.pojo.po.TMenu">
+		SELECT * FROM t_menu m WHERE m.type='permission' AND m.id
+		IN (
+		SELECT rm.menuid FROM t_rolemenu rm WHERE rm.roleid IN (SELECT
+		ur.roleid
+		FROM t_userrole ur WHERE ur.userid=#{id})
+		);
+	</select>
+</mapper>

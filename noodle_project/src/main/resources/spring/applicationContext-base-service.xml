@@ -15,5 +15,6 @@
 
 	<!-- 用户管理 -->
 	<bean id="userService" class="com.noodle.service.impl.UserServiceImpl"/>
-	
+	<!-- 菜单管理 -->
+	<bean id="menuService" class="com.noodle.service.impl.MenuServiceImpl"/>
 </beans>

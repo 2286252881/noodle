@@ -39,6 +39,7 @@
 								width="56" height="20"> <a
 								href=javascript:randomcode_refresh()>刷新</a>
 						</div>
+						<span>记住我</span><input type="checkbox" name="rememberMe" />
 					</div>
 					<div class="form-group">
 						<div class="col-lg-9 col-lg-offset-3">
