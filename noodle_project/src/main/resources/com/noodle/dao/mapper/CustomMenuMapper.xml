@@ -12,12 +12,15 @@
 			<result column="URl" property="url" jdbcType="VARCHAR" />
 		</collection>
 	</resultMap>
-	<select id="getAllMenusByuserId" parameterType="int" resultMap="com.noodle.pojo.po.TMenu">
-		SELECT * FROM t_menu m WHERE m.type='permission' AND
-		m.type='permission' AND m.id IN (
-		SELECT rm.menuid FROM t_rolemenu rm WHERE rm.roleid IN (SELECT ur.roleid
-		FROM t_userrole ur WHERE ur.userid=#{id} )
-		)
+	<select id="getAllMenusByuserId" parameterType="int" resultMap="MenuResultMap">
+		SELECT m1.id menuid,m1.menuname menuname,m2.id menuid_two,m2.menuname
+		menuname_two,m2.url url FROM t_menu m1,t_menu m2 WHERE
+		m1.type='menu'AND m1.id!='1' AND m1.id=m2.pid AND m2.id IN
+		(SELECT m.id
+		FROM t_role r,t_menu m ,t_rolemenu rm WHERE m.id=rm.menuid AND
+		r.id=rm.roleid AND r.id
+		IN (SELECT r.id FROM t_userrole ur,t_user u
+		WHERE ur.userid=u.id AND u.id=#{id}))
 	</select>
 	<select id="findPermissionListByUserid" parameterType="int"
 		resultType="com.noodle.pojo.po.TMenu">

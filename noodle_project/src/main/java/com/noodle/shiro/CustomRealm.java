@@ -3,7 +3,6 @@ package com.noodle.shiro;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -17,10 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.noodle.pojo.po.ActiveUser;
 import com.noodle.pojo.po.TMenu;
-import com.noodle.pojo.po.TRole;
 import com.noodle.pojo.po.TUser;
 import com.noodle.pojo.vo.Menu;
-import com.noodle.process.result.ExceptionResultInfo;
 import com.noodle.service.IMenuService;
 import com.noodle.service.IUserService;
 
@@ -42,11 +39,11 @@ public class CustomRealm extends AuthorizingRealm {
 		// 第一步从token中取出身份凭证
 		String username = (String) token.getPrincipal();
 		TUser tuser = null;
-		try {
-			tuser = userService.findSysUserByUserName(username);// 只用用户名是因为密码是md5加密的，待对比。。。。。
-		} catch (ExceptionResultInfo e) {
-			e.printStackTrace();
-		}
+			try {
+				tuser = userService.findSysUserByUserName(username);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}// 只用用户名是因为密码是md5加密的，待对比。。。。。
 		// 如果根据用户没查到用户信息就不用做处理了
 		if (tuser == null) {
 			return null;// 放行未认证通过
@@ -61,11 +58,12 @@ public class CustomRealm extends AuthorizingRealm {
 		activeUser.setUsername(tuser.getUsername());
 		activeUser.setUserid(tuser.getId().toString());
 		List<Menu> menus = null;
-		try {
-			menus = menuService.getAllMenusByuserId(tuser.getId());
-		} catch (ExceptionResultInfo e) {
-			e.printStackTrace();
-		} // this.menus();//这一步可以通过userService去获取tuser(userId)用户对应的菜单
+		// this.menus();//这一步可以通过userService去获取tuser(userId)用户对应的菜单
+			try {
+				menus = menuService.getAllMenusByuserId(tuser.getId());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		activeUser.setMenus(menus);
 		SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(activeUser, password,
 				ByteSource.Util.bytes(salt), this.getName());
@@ -81,7 +79,7 @@ public class CustomRealm extends AuthorizingRealm {
 			tpermissionList = menuService.findPermissionListByUserid(Integer.parseInt(activeUser.getUserid()));
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-		} catch (ExceptionResultInfo e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		List<String> permissions = new ArrayList<String>();
@@ -94,7 +92,7 @@ public class CustomRealm extends AuthorizingRealm {
 		SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
 		simpleAuthorizationInfo.addStringPermissions(permissions);
 
-		return null;
+		return simpleAuthorizationInfo;
 	}
 
 	// 清除缓存
