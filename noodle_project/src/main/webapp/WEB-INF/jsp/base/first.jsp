@@ -19,15 +19,10 @@
 			</div>
 			<c:forEach items="${menu.menus}" var="m2">
 				<div style="padding-top: 8px; padding-left: 25px;">
-					<a style="text-decoration: none; font-size: 14px">${m2.menuname}</a>
+					<a style="text-decoration: none; font-size: 14px" href="${baseurl}${m2.url}">${m2.menuname}</a>
 				</div>
 			</c:forEach>
 		</div>
 	</c:forEach>
-	<div style="margin: 10px auto; width: 500px">
-		<shiro:hasPermission name="user:search">
-			<div>user:serach</div>
-		</shiro:hasPermission>
-	</div>
 </body>
 </html>

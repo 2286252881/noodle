@@ -1,5 +1,6 @@
 package com.noodle.action;
 
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,7 @@ import com.noodle.service.IUserService;
 
 @Controller
 @RequestMapping("/user")
-public class UserAction {
+public class SysUserAction {
 	@Autowired
 	private IUserService userService;
 
@@ -25,9 +26,10 @@ public class UserAction {
 	@RequestMapping("/getAllUsers")
 	public @ResponseBody JSON getAllUsers() throws ExceptionResultInfo {
 		try {
+			int a=1/0;
 			return (JSON) JSON.toJSON(userService.getAllUsers());
 		} catch (Exception e) {
-			ResultInfo resultInfo = new ResultInfo(ResultInfo.TYPE_RESULT_FAIL, 100, "search all users is fail");
+			ResultInfo resultInfo = new ResultInfo(ResultInfo.TYPE_RESULT_FAIL, 0001, "search all users is fail");
 			throw new ExceptionResultInfo(resultInfo);
 		}
 	};

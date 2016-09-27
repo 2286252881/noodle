@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
@@ -30,7 +31,6 @@ public class ExceptionResolverCustom implements HandlerExceptionResolver {
 		// 输出异常信息
 		ex.printStackTrace();
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
-
 		Method method = handlerMethod.getMethod();
 		// 判断是否返回json(只要方法上包含responseBody注解，就表示返回json):查找方法是否包含@ResponseBody注解
 		ResponseBody responseBody = AnnotationUtils.findAnnotation(method, ResponseBody.class);
@@ -41,13 +41,13 @@ public class ExceptionResolverCustom implements HandlerExceptionResolver {
 		}
 
 		// 业务异常
-		String view = "/base/error";
-		// 获取异常代码
-		int messageCode = exceptionResultInfo.getResultInfo().getMessageCode();
-		if (messageCode == 106) {
-			// 根据异常情况返回对应的页面处理
-			view = "/base/login";
+		String view = exceptionResultInfo.getResultInfo().getView();
+		//000：shiro权限不通过
+		if (000 == exceptionResultInfo.getResultInfo().getMessageCode()) {
+			exceptionResultInfo.getResultInfo().setView("");
+			resolveJsonException(request, response, handler, exceptionResultInfo);
 		}
+
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("exceptionResultInfo", exceptionResultInfo.getResultInfo().getMessage());
 		modelAndView.setViewName(view);
@@ -59,6 +59,12 @@ public class ExceptionResolverCustom implements HandlerExceptionResolver {
 		ResultInfo resultInfo = null;
 		if (ex instanceof ExceptionResultInfo) {
 			resultInfo = ((ExceptionResultInfo) ex).getResultInfo();
+		} else if (ex instanceof UnauthorizedException) {
+			resultInfo = new ResultInfo();
+			resultInfo.setType(ResultInfo.TYPE_RESULT_FAIL);
+			resultInfo.setMessageCode(000);// shiro认证异常
+			resultInfo.setMessage("Subject does not have permission!");
+			resultInfo.setView("/base/refuse");
 		} else {
 			resultInfo = new ResultInfo();
 			resultInfo.setType(ResultInfo.TYPE_RESULT_FAIL);
@@ -73,6 +79,7 @@ public class ExceptionResolverCustom implements HandlerExceptionResolver {
 		ExceptionResultInfo exceptionResultInfo = resoverExceptionCustom(ex);
 		HttpOutputMessage outputMessage = new ServletServerHttpResponse(response);
 		try {
+			exceptionResultInfo.getResultInfo().setView("");
 			jsonMessageConverter.write(exceptionResultInfo, MediaType.APPLICATION_JSON, outputMessage);
 		} catch (HttpMessageNotWritableException e) {
 			e.printStackTrace();

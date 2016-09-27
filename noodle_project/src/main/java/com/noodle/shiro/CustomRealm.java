@@ -38,6 +38,7 @@ public class CustomRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		// 第一步从token中取出身份凭证
 		String username = (String) token.getPrincipal();
+		
 		TUser tuser = null;
 			try {
 				tuser = userService.findSysUserByUserName(username);
