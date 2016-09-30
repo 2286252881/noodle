@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>www.woaichinoodle.com</title>
 </head>
 <body>
@@ -39,11 +39,21 @@
 								width="56" height="20"> <a
 								href=javascript:randomcode_refresh()>刷新</a>
 						</div>
-						<span>记住我</span><input type="checkbox" name="rememberMe" />
 					</div>
 					<div class="form-group">
+						<label class="col-sm-3 control-label"></label>
 						<div class="col-lg-9 col-lg-offset-3">
+							<div class="col-sm-4">
+								<input type="checkbox" name="rememberMe" /><label class="control-label">记住我</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-3 control-label"></label>
+						<div class="col-lg-9 col-lg-offset-3">
+							<div class="col-sm-4">
 							<button type="submit" class="btn btn-primary">登录</button>
+							</div>
 						</div>
 					</div>
 				</form>

@@ -41,13 +41,12 @@ public class ExceptionResolverCustom implements HandlerExceptionResolver {
 		}
 
 		// 业务异常
-		String view = exceptionResultInfo.getResultInfo().getView();
-		//000：shiro权限不通过
+		String view =exceptionResultInfo.getResultInfo().getView();
+		// 000：shiro权限不通过
 		if (000 == exceptionResultInfo.getResultInfo().getMessageCode()) {
-			exceptionResultInfo.getResultInfo().setView("");
-			resolveJsonException(request, response, handler, exceptionResultInfo);
+			exceptionResultInfo.getResultInfo().setView("/base/refuse");
+			view=exceptionResultInfo.getResultInfo().getView();
 		}
-
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("exceptionResultInfo", exceptionResultInfo.getResultInfo().getMessage());
 		modelAndView.setViewName(view);
@@ -63,8 +62,7 @@ public class ExceptionResolverCustom implements HandlerExceptionResolver {
 			resultInfo = new ResultInfo();
 			resultInfo.setType(ResultInfo.TYPE_RESULT_FAIL);
 			resultInfo.setMessageCode(000);// shiro认证异常
-			resultInfo.setMessage("Subject does not have permission!");
-			resultInfo.setView("/base/refuse");
+			resultInfo.setMessage("对不起，您没有该访问权限!");
 		} else {
 			resultInfo = new ResultInfo();
 			resultInfo.setType(ResultInfo.TYPE_RESULT_FAIL);
@@ -73,13 +71,12 @@ public class ExceptionResolverCustom implements HandlerExceptionResolver {
 		return new ExceptionResultInfo(resultInfo);
 	}
 
-	// 将不是json的异常信息转json
+	// 如果有@responsebody注解，将不是json的异常信息转json
 	private ModelAndView resolveJsonException(HttpServletRequest request, HttpServletResponse response, Object handler,
 			Exception ex) {
 		ExceptionResultInfo exceptionResultInfo = resoverExceptionCustom(ex);
 		HttpOutputMessage outputMessage = new ServletServerHttpResponse(response);
 		try {
-			exceptionResultInfo.getResultInfo().setView("");
 			jsonMessageConverter.write(exceptionResultInfo, MediaType.APPLICATION_JSON, outputMessage);
 		} catch (HttpMessageNotWritableException e) {
 			e.printStackTrace();
