@@ -3,7 +3,7 @@ package com.noodle.process.result;
 
 /**
  * 系统提交结果结果类型
- * @author Thinkpad
+ * @author zh
  *
  */
 public class SubmitResultInfo {
