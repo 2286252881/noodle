@@ -48,7 +48,7 @@
 	<!-- <mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
-			<bean class="com.noodle.filter.LoginInterceptor"/>
+			<bean class="com.noodle.filter.VisitInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors> -->
 </beans>

@@ -3,6 +3,7 @@ package com.noodle.shiro;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -59,7 +60,6 @@ public class CustomRealm extends AuthorizingRealm {
 		activeUser.setUsername(tuser.getUsername());
 		activeUser.setUserid(tuser.getId().toString());
 		List<Menu> menus = null;
-		// this.menus();//这一步可以通过userService去获取tuser(userId)用户对应的菜单
 			try {
 				menus = menuService.getAllMenusByuserId(tuser.getId());
 			} catch (Exception e) {
@@ -97,27 +97,9 @@ public class CustomRealm extends AuthorizingRealm {
 	}
 
 	// 清除缓存
-//	public void clearCached() {
-//		PrincipalCollection principals = SecurityUtils.getSubject().getPrincipals();
-//		super.clearCache(principals);
-//	}
-
-	/**
-	 * 模拟菜单
-	 * 
-	 * @return
-	 */
-	private List<Menu> menus() {
-		List<Menu> menus = new ArrayList<Menu>();
-		Menu menu1 = new Menu();
-		menu1.setMenuname("菜单-lol");
-		Menu menu2 = new Menu();
-		menu2.setMenuname("菜单-一起看");
-		Menu menu3 = new Menu();
-		menu3.setMenuname("菜单-户外");
-		Menu menu4 = new Menu();
-		menu4.setMenuname("菜-新秀");
-		return menus;
+	public void clearCached() {
+		PrincipalCollection principals = SecurityUtils.getSubject().getPrincipals();
+		super.clearCache(principals);
 	}
 
 }

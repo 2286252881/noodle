@@ -25,11 +25,5 @@
 				style="vertical-align: middle">${exceptionResultInfo}</span></td>
 		</tr>
 	</table>
-	<table width='100%'>
-		<tr>
-			<td align="center"><input type="button" align="middle"
-				class="button" value="确定" onclick="history.go(-1);" /></td>
-		</tr>
-	</table>
 </body>
 </html>

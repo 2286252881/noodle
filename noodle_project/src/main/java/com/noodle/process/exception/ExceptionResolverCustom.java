@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.http.HttpOutputMessage;
@@ -22,6 +23,7 @@ import com.noodle.process.result.ExceptionResultInfo;
 import com.noodle.process.result.ResultInfo;
 
 public class ExceptionResolverCustom implements HandlerExceptionResolver {
+	private static Logger logger=Logger.getLogger(ExceptionResolverCustom.class);
 
 	private HttpMessageConverter<ExceptionResultInfo> jsonMessageConverter;
 
@@ -29,7 +31,7 @@ public class ExceptionResolverCustom implements HandlerExceptionResolver {
 	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
 			Exception ex) {
 		// 输出异常信息
-		ex.printStackTrace();
+		logger.debug(ex);
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		Method method = handlerMethod.getMethod();
 		// 判断是否返回json(只要方法上包含responseBody注解，就表示返回json):查找方法是否包含@ResponseBody注解
@@ -42,8 +44,8 @@ public class ExceptionResolverCustom implements HandlerExceptionResolver {
 
 		// 业务异常
 		String view =exceptionResultInfo.getResultInfo().getView();
-		// 000：shiro权限不通过
-		if (000 == exceptionResultInfo.getResultInfo().getMessageCode()) {
+		// 999999999：9个9shiro权限不通过
+		if (999999999 == exceptionResultInfo.getResultInfo().getMessageCode()) {
 			exceptionResultInfo.getResultInfo().setView("/base/refuse");
 			view=exceptionResultInfo.getResultInfo().getView();
 		}
@@ -61,7 +63,7 @@ public class ExceptionResolverCustom implements HandlerExceptionResolver {
 		} else if (ex instanceof UnauthorizedException) {
 			resultInfo = new ResultInfo();
 			resultInfo.setType(ResultInfo.TYPE_RESULT_FAIL);
-			resultInfo.setMessageCode(000);// shiro认证异常
+			resultInfo.setMessageCode(999999999);// shiro认证异常
 			resultInfo.setMessage("对不起，您没有该访问权限!");
 		} else {
 			resultInfo = new ResultInfo();

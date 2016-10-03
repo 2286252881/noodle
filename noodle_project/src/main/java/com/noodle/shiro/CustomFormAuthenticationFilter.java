@@ -18,7 +18,6 @@ public class CustomFormAuthenticationFilter extends FormAuthenticationFilter {
 		HttpSession session = httpServletRequest.getSession();
 		// 取出session的验证码（正确的验证码）
 		String validateCode = (String) session.getAttribute("validateCode");
-
 		// 取出页面的验证码
 		// 输入的验证和session中的验证进行对比
 		String randomcode = httpServletRequest.getParameter("randomcode");
