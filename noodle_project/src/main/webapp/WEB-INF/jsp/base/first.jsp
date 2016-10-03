@@ -9,6 +9,6 @@
 <title>首页</title>
 </head>
 <body>
-	<jsp:include page="layout/left.jsp"/>
+	<jsp:include page="layout/top.jsp"/>
 </body>
 </html>

@@ -17,11 +17,13 @@
 	</form>
 	<div class="_1 navbar-right">
 		<p class="navbar-text">
-			您好,<a href="#" class="navbar-link">${adminUser.username} </a>
+			<c:if test="${empty adminUser.username}">
+				匿名用户
+			</c:if>
+			<c:if test="${not empty adminUser.username}">
+				您好,<a href="#" class="navbar-link">${adminUser.username} </a>
+			</c:if>
 		</p>
 		<a href="#" class="btn btn-primary btn-sm navbar-btn navbar-right">赞一个</a>
 	</div>
-</div>
-<div class="container">
-	<p class="alert-info">你好！</p>
 </div>

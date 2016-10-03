@@ -9,22 +9,6 @@
 <title>查看用户信息</title>
 </head>
 <body>
-	<jsp:include page="../Layout/left.jsp"/>
-	<div class="container">
-		<div class="row">
-			<table>
-				<tr>
-					<th>编号</th>
-					<th>姓名</th>
-				</tr>
-					<c:forEach items="${users}" var="item" varStatus="sta">
-				<tr>
-						<td><c:out value="${sta.index+1}"></c:out> </td>
-						<td>${item.username}</td>
-				</tr>
-					</c:forEach>
-			</table>
-		</div>
-	</div>
+	登录
 </body>
 </html>
