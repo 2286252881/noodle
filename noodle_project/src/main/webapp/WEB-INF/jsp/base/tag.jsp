@@ -1,18 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro"%>
-<c:set var="baseurl" value="${pageContext.request.contextPath}"/>
-<script type="text/javascript"
-	src="${baseurl}/jslib/js/jquery-1.8.0.min.js"></script>
-<link rel="stylesheet" href="${baseurl}/jslib/bootstrap_form/vendor/bootstrap/css/bootstrap.css" />
-<link rel="stylesheet" href="${baseurl}/jslib/bootstrap_form/dist/css/formValidation.css" />
-<link rel="stylesheet" type="text/css" href="${baseurl}/jslib/bootstrap_form/css/default.css">
+<c:set var="baseurl" value="${pageContext.request.contextPath}" />
 
 
-<script type="text/javascript" src="${baseurl}/jslib/bootstrap_form/vendor/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="${baseurl}/jslib/bootstrap_form/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="${baseurl}/jslib/bootstrap_form/dist/js/formValidation.js"></script>
-    <script type="text/javascript" src="${baseurl}/jslib/bootstrap_form/dist/js/framework/bootstrap.js"></script>
-    <script type="text/javascript" src="${baseurl}/jslib/bootstrap_form/dist/js/language/zh_CN.js"></script>
-<!-- menu.css -->
-<link rel="stylesheet" type="text/css" href="${baseurl}/csslib/menu/menu.css">
+<!-- jquery和bootstrap -->
+<link rel="stylesheet" href="${baseurl}/jslib/bootstrap/css/bootstrap.min.css" />
+
+<script src="${baseurl}/jslib/jquery/jquery-3.1.1.min.js"></script>
+<script src="${baseurl}/jslib/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- top.css -->
+<link rel="stylesheet" href="${baseurl}/csslib/menu/top.css" />
