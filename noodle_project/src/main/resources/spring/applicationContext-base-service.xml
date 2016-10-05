@@ -17,4 +17,8 @@
 	<bean id="userService" class="com.noodle.service.impl.UserServiceImpl"/>
 	<!-- 菜单管理 -->
 	<bean id="menuService" class="com.noodle.service.impl.MenuServiceImpl"/>
+	<!-- 文章分类 -->
+	<bean id="articleTypeService" class="com.noodle.service.impl.ArticleTypeServiceImpl"/>
+	<!-- 文章 -->
+	<bean id="articleService" class="com.noodle.service.impl.ArticleServiceImpl"/>
 </beans>

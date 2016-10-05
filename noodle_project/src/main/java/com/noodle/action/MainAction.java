@@ -1,6 +1,7 @@
 package com.noodle.action;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.noodle.pojo.po.ActiveUser;
+import com.noodle.pojo.po.Article;
+import com.noodle.process.result.ExceptionResultInfo;
+import com.noodle.service.ArticleService;
 import com.noodle.shiro.CustomRealm;
 
 @Controller
@@ -25,7 +29,8 @@ public class MainAction {
 	
 	@Autowired
 	private CustomRealm customRealm;
-	
+	@Autowired
+	private ArticleService articleService;
 	
 	@RequestMapping("/toLogin")
 	public String toLogin(){
@@ -72,10 +77,12 @@ public class MainAction {
 	}
 
 	@RequestMapping("/first")
-	public String first(Model model) {
+	public String first(Model model) throws ExceptionResultInfo {
 		Subject subject = SecurityUtils.getSubject();
 		// 取出身份信息
 		ActiveUser user = (ActiveUser) subject.getPrincipal();
+		List<Article> articles=articleService.getTopArticle();
+		model.addAttribute("articles", articles);
 		model.addAttribute("adminUser", user);
 		return "/base/first";
 	}

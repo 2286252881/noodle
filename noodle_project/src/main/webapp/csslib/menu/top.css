@@ -6,7 +6,7 @@
 }
 
 body {
-	padding-top: 60px;
+	padding-top: 70px;
 }
 
 .navbar-inverse input[type="text"] {
@@ -41,4 +41,13 @@ body {
 		top:20px;
 		left:117px;
 	}
+}
+/* 小火箭css */
+#gotop1 {
+    width: 80px;
+    position: fixed;
+    bottom: 90px;
+    cursor: pointer;
+    z-index: 99998;
+    right: 5px;
 }
