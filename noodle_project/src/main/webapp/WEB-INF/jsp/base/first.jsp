@@ -28,7 +28,7 @@
 							技术分享
 						</c:if>
 							<c:if test="${item.articleTypeId==2}">
-							精彩生生活
+							精彩生活
 						</c:if>
 						</div>
 						<div style="float: right;">阅读量：${item.articleClick}</div>
@@ -59,9 +59,6 @@
 	$(function(){
 		$(".articleContent").hide();
 	});
-	$('button').on('click', function() {
-		$("#myCollapsible").toggle("normal");
-	});
 	function article_title(index){
 		var count=$("#staCount").val()-1;
 		$("#articleContent"+index).toggle("slow");
@@ -73,10 +70,5 @@
 		var height=$("#sort"+index).offset().top;
 		$("body").animate({scrollTop:height-40},1000);
 	}
-	// 默认速度
-	$("#gotop1").click(function() {
-		$("body").animate({scrollTop:0},1000);
-	 });
-
 </script>
 </html>

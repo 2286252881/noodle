@@ -63,7 +63,7 @@ public class MainAction {
 		// session失效
 		session.invalidate();
 		// 重定向到商品查询页面
-		return "redirect:/first.action";
+		return "/base/first";
 	}
 	
 	
@@ -77,13 +77,13 @@ public class MainAction {
 	}
 
 	@RequestMapping("/first")
-	public String first(Model model) throws ExceptionResultInfo {
+	public String first(Model model,HttpServletRequest request) throws ExceptionResultInfo {
 		Subject subject = SecurityUtils.getSubject();
 		// 取出身份信息
 		ActiveUser user = (ActiveUser) subject.getPrincipal();
 		List<Article> articles=articleService.getTopArticle();
 		model.addAttribute("articles", articles);
-		model.addAttribute("adminUser", user);
+		request.getSession().setAttribute("adminUser", user);
 		return "/base/first";
 	}
 }

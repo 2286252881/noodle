@@ -4,8 +4,9 @@
 <c:set var="baseurl" value="${pageContext.request.contextPath}" />
 
 
-<!-- jquery和bootstrap -->
-<link rel="stylesheet" href="${baseurl}/jslib/bootstrap/css/bootstrap.min.css" />
+<!-- jquerybootstrap -->
+<link rel="stylesheet"
+	href="${baseurl}/jslib/bootstrap/css/bootstrap.min.css" />
 
 <script src="${baseurl}/jslib/jquery/jquery-3.1.1.min.js"></script>
 <script src="${baseurl}/jslib/bootstrap/js/bootstrap.min.js"></script>

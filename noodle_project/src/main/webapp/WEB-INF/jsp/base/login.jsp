@@ -11,10 +11,10 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row">
+		<div class="row alert-info">
 			<div class="col-lg-8 col-lg-offset-2">
 				<div class="page-header">
-					<h2>www.woaichinoodle.com</h2>
+					<h2><a style="text-decoration: none;" href="${baseurl}/first.action">www.woaichinoodle.com</a></h2>
 				</div>
 				<form id="index_loginForm" method='post'
 					action="${baseurl}/login.action" class="form-horizontal">

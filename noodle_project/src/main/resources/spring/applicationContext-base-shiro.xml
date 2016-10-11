@@ -36,7 +36,7 @@
 				<!-- 对静态资源允许访问 -->
 				/jslib/** = anon
 				/csslib/** = anon
-				/image/** = anon
+				/ueditor/** = anon
 				<!-- 对验证码可以匿名访问 -->
 				/validatecode.jsp=anon
 				/first.action = anon
