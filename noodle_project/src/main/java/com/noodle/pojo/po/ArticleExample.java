@@ -554,6 +554,76 @@ public class ArticleExample {
             addCriterion("article_content not between", value1, value2, "articleContent");
             return (Criteria) this;
         }
+
+        public Criteria andArticleStatusIsNull() {
+            addCriterion("article_status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusIsNotNull() {
+            addCriterion("article_status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusEqualTo(String value) {
+            addCriterion("article_status =", value, "articleStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusNotEqualTo(String value) {
+            addCriterion("article_status <>", value, "articleStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusGreaterThan(String value) {
+            addCriterion("article_status >", value, "articleStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusGreaterThanOrEqualTo(String value) {
+            addCriterion("article_status >=", value, "articleStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusLessThan(String value) {
+            addCriterion("article_status <", value, "articleStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusLessThanOrEqualTo(String value) {
+            addCriterion("article_status <=", value, "articleStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusLike(String value) {
+            addCriterion("article_status like", value, "articleStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusNotLike(String value) {
+            addCriterion("article_status not like", value, "articleStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusIn(List<String> values) {
+            addCriterion("article_status in", values, "articleStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusNotIn(List<String> values) {
+            addCriterion("article_status not in", values, "articleStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusBetween(String value1, String value2) {
+            addCriterion("article_status between", value1, value2, "articleStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andArticleStatusNotBetween(String value1, String value2) {
+            addCriterion("article_status not between", value1, value2, "articleStatus");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

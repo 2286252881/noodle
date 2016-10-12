@@ -17,6 +17,8 @@ public class Article {
 
     private String articleContent;
 
+    private String articleStatus;
+
     public Integer getArticleId() {
         return articleId;
     }
@@ -70,6 +72,14 @@ public class Article {
     }
 
     public void setArticleContent(String articleContent) {
-        this.articleContent = articleContent == null ? null : articleContent.trim();
+        this.articleContent = articleContent;
+    }
+
+    public String getArticleStatus() {
+        return articleStatus;
+    }
+
+    public void setArticleStatus(String articleStatus) {
+        this.articleStatus = articleStatus == null ? null : articleStatus.trim();
     }
 }

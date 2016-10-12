@@ -19,12 +19,21 @@ public class ArticleServiceImpl implements ArticleService {
 	public List<Article> getTopArticle() throws ExceptionResultInfo {
 		ArticleExample articleExample = new ArticleExample();
 		ArticleExample.Criteria criteria = articleExample.createCriteria();
-		return articleMapper.selectByExample(null).subList(0, 5);
+		criteria.andArticleStatusEqualTo("1");
+		return articleMapper.selectByExample(articleExample).subList(0, 5);
 	}
 
 	@Override
 	public int addArticle(Article article) throws ExceptionResultInfo {
 		return articleMapper.insert(article);
+	}
+
+	@Override
+	public List<Article> getAllArticle() throws ExceptionResultInfo {
+		ArticleExample articleExample = new ArticleExample();
+		ArticleExample.Criteria criteria = articleExample.createCriteria();
+		criteria.andArticleStatusEqualTo("1");
+		return articleMapper.selectByExample(articleExample);
 	}
 
 }

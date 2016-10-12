@@ -30,7 +30,8 @@
 		<div class="tab-content">
 			<div class="tab-pane active" id="addArticle">
 				<hr />
-				<form action="${baseurl}/article/addArticle.action" method="post">
+				<form action="${baseurl}/article/addArticle.action" method="post"
+					id="articleForm">
 					<div style="margin-bottom: 5px;">
 						<select id="select_id" style="float: left;">
 							<c:forEach items="${articleTypes}" var="item" varStatus="sta">
@@ -38,18 +39,59 @@
 							</c:forEach>
 						</select>
 						<div style="float: left">
-							<input type="text" id="articleName" name="articleName" size="30%">
+							文章标题：<input type="text" id="articleName" name="articleName"
+								size="30%">
 						</div>
 						<dir style="clear: both;"></dir>
 					</div>
 					<input type="hidden" id="articleTypeId" name="articleTypeId">
 					<textarea id="myEditor" name="articleContent"
 						style="height: 500px;"></textarea>
-					<input class="btn btn-primary" type="submit" value="提交">
+					<div style="text-align: center; margin: 50px;">
+						<input class="btn btn-primary" style="margin-right: 50px;"
+							type="button" id="sub_button" value="文章发布"><input
+							class="btn btn-primary" style="margin-left: 50px;" type="button"
+							id="back_first" value="回到首页">
+					</div>
 				</form>
 			</div>
-			<div class="tab-pane" id="articleTypes"></div>
-			<div class="tab-pane" id="articleManager"></div>
+			<div class="tab-pane" id="articleTypes">
+				<table class="table">
+					<tr>
+						<td>类别</td>
+						<td>操作</td>
+					</tr>
+					<c:forEach items="${articleTypes}" var="item" varStatus="sta">
+						<tr>
+							<c:if test="${sta.index%2==1}">
+								<td class="active">${item.typeName}</td>
+								<td class="active"><span><a href="#">修改</a>|<a href="#">删除</a></span></td>
+							</c:if>
+							<c:if test="${sta.index%2==0}">
+								<td class="info">${item.typeName}</td>
+								<td class="info"><span><a href="#">修改</a>|<a href="#">删除</a></span></td>
+							</c:if>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+			<div class="tab-pane" id="articleManager">
+				<table class="table">
+					<tr>
+						<th>文章标题</th>
+					</tr>
+					<c:forEach items="${articles}" var="item" varStatus="sta">
+						<tr>
+							<c:if test="${sta.index%2==1}">
+								<td class="active">${item.articleName}</td>
+							</c:if>
+							<c:if test="${sta.index%2==0}">
+								<td class="info">${item.articleName}</td>
+							</c:if>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
 		</div>
 	</div>
 </body>
@@ -60,9 +102,9 @@
 				[ 'fullscreen', 'undo', 'redo', 'bold', 'italic', 'underline',
 						'fontborder', 'strikethrough', 'superscript',
 						'subscript', 'removeformat                     ',
-						'simpleupload','lineheight',
-						'inserttable', '|', 'justifyleft', 'justifycenter',
-						'justifyright', 'justifyjustify' ],
+						'simpleupload', 'lineheight', 'inserttable', '|',
+						'justifyleft', 'justifycenter', 'justifyright',
+						'justifyjustify' ],
 				[ 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain',
 						'|', 'forecolor', 'backcolor', 'insertorderedlist',
 						'insertunorderedlist', 'selectall', 'cleardoc',
@@ -94,6 +136,41 @@
 		var checkValue = $("#select_id").val();
 		$("#articleTypeId").val(checkValue);
 	});
-	/* tab切换 start */
+	/* tab切换 end */
+	/* 表单验证start */
+	$('#sub_button').on('click', function() {
+		if ($("#articleName").val() == "") {
+			layer.alert('文章标题未填写!', {
+				title : false,
+				skin : 'layui-layer-lan',
+				closeBtn : 5,
+				shift : 3
+			});
+			return false;
+		}
+		if (ue.getContent() == "") {
+			layer.alert('文章内容未填写!', {
+				title : false,
+				skin : 'layui-layer-lan',
+				closeBtn : 5,
+				shift : 3
+			});
+			return false;
+		}
+		$("#articleForm").submit();
+	});
+	/* 表单验证end */
+	/* 回到首页 */
+	$('#back_first').on('click', function() {
+		layer.confirm('确定回到首页吗？', {
+			btn : [ '是', '否' ]
+		}, function() {
+			window.location.href = "${baseurl}/first.action";
+		}, function() {
+			layer.msg('关闭,停在当前页', {
+				icon : 1
+			});
+		});
+	});
 </script>
 </html>

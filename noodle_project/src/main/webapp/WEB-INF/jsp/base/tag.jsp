@@ -10,6 +10,7 @@
 
 <script src="${baseurl}/jslib/jquery/jquery-3.1.1.min.js"></script>
 <script src="${baseurl}/jslib/bootstrap/js/bootstrap.min.js"></script>
-
 <!-- top.css -->
 <link rel="stylesheet" href="${baseurl}/csslib/menu/top.css" />
+<!--layer.js-->
+<script src="${baseurl}/jslib/layer/layer.js"></script>

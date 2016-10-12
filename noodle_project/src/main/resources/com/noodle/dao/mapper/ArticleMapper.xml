@@ -9,6 +9,7 @@
     <result column="article_type_id" property="articleTypeId" jdbcType="INTEGER" />
     <result column="article_substr" property="articleSubstr" jdbcType="VARCHAR" />
     <result column="article_content" property="articleContent" jdbcType="VARCHAR" />
+    <result column="article_status" property="articleStatus" jdbcType="CHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,7 +71,7 @@
   </sql>
   <sql id="Base_Column_List" >
     article_id, article_name, article_time, article_click, article_type_id, article_substr, 
-    article_content
+    article_content, article_status
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.noodle.pojo.po.ArticleExample" >
     select
@@ -106,10 +107,10 @@
   <insert id="insert" parameterType="com.noodle.pojo.po.Article" >
     insert into article (article_id, article_name, article_time, 
       article_click, article_type_id, article_substr, 
-      article_content)
+      article_content, article_status)
     values (#{articleId,jdbcType=INTEGER}, #{articleName,jdbcType=VARCHAR}, #{articleTime,jdbcType=TIMESTAMP}, 
       #{articleClick,jdbcType=DECIMAL}, #{articleTypeId,jdbcType=INTEGER}, #{articleSubstr,jdbcType=VARCHAR}, 
-      #{articleContent,jdbcType=VARCHAR})
+      #{articleContent,jdbcType=VARCHAR}, #{articleStatus,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.noodle.pojo.po.Article" >
     insert into article
@@ -135,6 +136,9 @@
       <if test="articleContent != null" >
         article_content,
       </if>
+      <if test="articleStatus != null" >
+        article_status,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="articleId != null" >
@@ -157,6 +161,9 @@
       </if>
       <if test="articleContent != null" >
         #{articleContent,jdbcType=VARCHAR},
+      </if>
+      <if test="articleStatus != null" >
+        #{articleStatus,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -190,6 +197,9 @@
       <if test="record.articleContent != null" >
         article_content = #{record.articleContent,jdbcType=VARCHAR},
       </if>
+      <if test="record.articleStatus != null" >
+        article_status = #{record.articleStatus,jdbcType=CHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -203,7 +213,8 @@
       article_click = #{record.articleClick,jdbcType=DECIMAL},
       article_type_id = #{record.articleTypeId,jdbcType=INTEGER},
       article_substr = #{record.articleSubstr,jdbcType=VARCHAR},
-      article_content = #{record.articleContent,jdbcType=VARCHAR}
+      article_content = #{record.articleContent,jdbcType=VARCHAR},
+      article_status = #{record.articleStatus,jdbcType=CHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -229,6 +240,9 @@
       <if test="articleContent != null" >
         article_content = #{articleContent,jdbcType=VARCHAR},
       </if>
+      <if test="articleStatus != null" >
+        article_status = #{articleStatus,jdbcType=CHAR},
+      </if>
     </set>
     where article_id = #{articleId,jdbcType=INTEGER}
   </update>
@@ -239,7 +253,8 @@
       article_click = #{articleClick,jdbcType=DECIMAL},
       article_type_id = #{articleTypeId,jdbcType=INTEGER},
       article_substr = #{articleSubstr,jdbcType=VARCHAR},
-      article_content = #{articleContent,jdbcType=VARCHAR}
+      article_content = #{articleContent,jdbcType=VARCHAR},
+      article_status = #{articleStatus,jdbcType=CHAR}
     where article_id = #{articleId,jdbcType=INTEGER}
   </update>
 </mapper>
