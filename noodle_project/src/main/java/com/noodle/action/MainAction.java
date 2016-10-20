@@ -17,7 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSON;
 import com.noodle.pojo.po.ActiveUser;
 import com.noodle.pojo.po.Article;
 import com.noodle.process.result.ExceptionResultInfo;

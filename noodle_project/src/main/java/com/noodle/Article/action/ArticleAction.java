@@ -1,20 +1,16 @@
-package com.noodle.action.ArticleType.action;
+package com.noodle.Article.action;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.noodle.pojo.po.ActiveUser;
 import com.noodle.pojo.po.Article;
 import com.noodle.pojo.po.ArticleType;
 import com.noodle.process.result.ExceptionResultInfo;

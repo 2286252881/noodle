@@ -1,4 +1,4 @@
-package com.noodle.action.user.action;
+package com.noodle.user.action;
 
 import java.util.List;
 
@@ -6,17 +6,11 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSON;
-import com.noodle.pojo.po.Article;
-import com.noodle.pojo.po.ArticleType;
 import com.noodle.pojo.po.TUser;
 import com.noodle.process.result.ExceptionResultInfo;
 import com.noodle.process.result.ResultInfo;
-import com.noodle.service.ArticleService;
-import com.noodle.service.ArticleTypeService;
 import com.noodle.service.IUserService;
 
 /**

@@ -47,6 +47,10 @@
 		<property name="jsonMessageConverter" ref="jsonMessageConverter"></property>
 	</bean>
 	<!--拦截器 -->
-	<!-- <mvc:interceptors> <mvc:interceptor> <mvc:mapping path="/**" /> <bean 
-		class="com.noodle.filter.VisitInterceptor"/> </mvc:interceptor> </mvc:interceptors> -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.noodle.filter.UploadimgInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>
