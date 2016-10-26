@@ -210,8 +210,7 @@ public class DateUtil {
 		 * String test = ",1.1,1.2,1.3,";
 		 * System.out.println(test.split(",").length);
 		 */
-		//System.out.println(new DateUtil().formatDate(new DateUtil().afterNDay(new Date(), 5)));
-		HashMap<Object, Object> haMap=new HashMap<Object, Object>();
+		/*HashMap<Object, Object> haMap=new HashMap<Object, Object>();
 		haMap.put("xx", null);
 		haMap.put("xx", null);
 		haMap.put(null, "11112");
@@ -226,7 +225,7 @@ public class DateUtil {
 		Set<Object> keys1=haTab.keySet();
 		for (Object object : keys1) {
 			System.out.println(haTab.get(object));
-		}
+		}*/
 	}
 
 }

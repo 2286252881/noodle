@@ -40,7 +40,7 @@
 							<fmt:formatDate value="${item.articleTime}" pattern="yyyy-mm-dd" />
 						</div>
 						<div style="float: left; margin-left: 15%">
-							<c:set var="staCount" value="${staCount=staCount+sta.index}"></c:set>
+							<c:set var="staCount" value="${staCount+sta.index}"></c:set>
 							文章标题：<span id="article_title"
 								onclick="article_title(${sta.index})"><strong>${item.articleName}</strong></span>
 						</div>
@@ -61,7 +61,7 @@
 	});
 	function article_title(index){
 		var count=$("#staCount").val()-1;
-		$("#articleContent"+index).toggle("slow");
+		$("#articleContent"+index).slideToggle("slow");
 		for(var i=0;i<=count;i++){
 			if(i!=index){
 				$("#articleContent"+i).hide();

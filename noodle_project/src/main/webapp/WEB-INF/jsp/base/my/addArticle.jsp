@@ -47,10 +47,10 @@
 					<input type="hidden" id="articleTypeId" name="articleTypeId">
 					<textarea id="myEditor" name="articleContent"
 						style="height: 500px;"></textarea>
-					<div style="text-align: center; margin: 50px;">
-						<input class="btn btn-primary" style="margin-right: 50px;"
+					<div style="text-align:center;margin: 30px auto;">
+						<input class="btn btn-primary" style="margin-right:10%;"
 							type="button" id="sub_button" value="文章发布"><input
-							class="btn btn-primary" style="margin-left: 50px;" type="button"
+							class="btn btn-primary" style="margin-left: 10%;" type="button"
 							id="back_first" value="回到首页">
 					</div>
 				</form>
@@ -120,7 +120,7 @@
 		allowDivTransToP : false
 	};
 	//传参生成实例  
-	ue = UE.getEditor('myEditor', item);
+	ue=UE.getEditor('myEditor', item);
 	/* ueditor  end */
 	/* tab切换 start */
 	$('#myTab a').click(function(e) {
