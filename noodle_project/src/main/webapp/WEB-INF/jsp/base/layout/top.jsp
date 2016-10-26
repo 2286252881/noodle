@@ -44,7 +44,7 @@
 	</div>
 </div>
 <!-- 右侧图标返回顶部 -->
-<span id="gotop1"> <span class="glyphicon glyphicon-plane"
+<span id="gotop1"> <span class="glyphicon glyphicon-arrow-up"
 	style="font-size: 60px; color: #B0E2FF"></span>
 </span>
 <script type="text/javascript">

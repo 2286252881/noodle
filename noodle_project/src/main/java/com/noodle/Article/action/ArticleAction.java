@@ -45,7 +45,7 @@ public class ArticleAction {
 	public String addArticle(Article article, HttpServletRequest request, HttpServletResponse response)
 			throws ExceptionResultInfo {
 		try {
-			article.setArticleStatus("0");
+			article.setArticleStatus("1");
 			article.setArticleSubstr(article.getArticleContent().substring(0, 100));
 			articleService.addArticle(article);
 		} catch (ExceptionResultInfo e) {
